@@ -1,4 +1,4 @@
-# Harrier — Insurance Navigation
+# Harrier — Government Forms & Benefits Navigation
 
 > *Part of the Circuit Forge LLC "AI for the tasks you hate most" suite.*
 
@@ -6,33 +6,33 @@
 
 ## What it does
 
-Harrier handles the full insurance fight: prior authorization tracking, claim dispute drafting, EOB (Explanation of Benefits) reconciliation, internal and external appeal letters, and state insurance commissioner complaints.
+Harrier guides you through government forms and benefit applications — translating bureaucratic requirements into plain language, pre-filling what it can, and tracking deadlines so nothing lapses. Covers benefits, FAFSA, immigration paperwork, and permit processes.
 
-The harrier is low, fast, and persistent — exactly what fighting a denied claim requires.
+The harrier is low, fast, and persistent — exactly what navigating government systems requires.
 
 ## Why it's hard
 
-Insurance disputes are engineered to be abandoned:
-- Prior auth processes have no standard timeline or format across insurers
-- EOBs are intentionally opaque — reconciling them against bills requires expertise
-- Appeal deadlines are short (30–60 days internal, 4 months external)
-- The regulatory landscape is complex: state insurance codes, ACA requirements, ERISA for employer plans
+Government forms are designed for compliance, not usability:
+- Applications are long, interdependent, and punish small errors with delays or denials
+- Eligibility rules vary by state, household composition, income, and program
+- Deadlines are strict and consequences of missing them are severe
+- Immigration forms carry legal risk if misunderstood or incorrectly filed
 
 ## Core pipeline
 
 ```
-Log claim / denial / prior auth request
-→ AI analyzes EOB + denial reason → Drafts appeal with clinical rationale
-→ Human review + attach supporting docs → Submit appeal
-→ Track deadline + escalation windows → External appeal / commissioner complaint if needed
+Identify the form or benefit needed
+→ AI explains eligibility requirements in plain language → Gather required documents
+→ Pre-fill draft with AI assistance → Human review + submit
+→ Track status + follow-up deadlines → Draft appeals if denied
 ```
 
-## Key differentiators vs. Peregrine
+## Coverage areas
 
-- Medical + insurance jargon parsing (CPT codes, ICD codes, denial reason codes)
-- Regulatory citation engine: state insurance code, ACA provisions, ERISA
-- External appeal automation: state IDRE (Independent Dispute Resolution Entity) filing
-- EOB reconciliation: match line items against Explanation of Benefits
+- **Benefits:** SSI, SNAP, Medicaid, housing assistance, TANF
+- **Education:** FAFSA, state grants, dependency edge cases
+- **Immigration:** I-130, I-485, N-400, DACA renewal, travel documents
+- **Permits & licenses:** by jurisdiction (building, business, professional)
 
 ## Product code (license key)
 
@@ -41,7 +41,7 @@ Log claim / denial / prior auth request
 ## Tech notes
 
 - Shared `circuitforge-core` scaffold
-- PDF parsing (pdfplumber) for EOBs and denial letters
-- CPT/ICD code lookup: CMS public datasets
-- State insurance department contact directory (structured YAML)
-- Vision module: scan paper EOBs and denial letters via moondream2 / Claude vision
+- PDF parsing (pdfplumber) for government form templates
+- Eligibility rule engine: structured YAML by program + jurisdiction
+- State agency contact directory
+- Vision module: scan mailed notices via moondream2 / Claude vision
